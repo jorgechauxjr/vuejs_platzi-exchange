@@ -3,6 +3,7 @@
     <nav>
       <nav class="flex items-center justify-between flex-wrap bg-green-400 p-6">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <!-- componente PxIcon -->
           <px-icon class="mr-2" />
           <span class="font-semibold text-xl tracking-tight">PlatziExchange</span>
         </div>
@@ -14,12 +15,12 @@
   </header>
 </template>
 
-// <script>
-// import PxIcon from "@/components/PxIcon";
+<script>
+import PxIcon from "@/components/PxIcon";
 
-// export default {
-//   name: "PxHeader",
+export default {
+  name: "PxHeader",
 
-//   components: { PxIcon }
-// };
-// </script>
+  components: { PxIcon },
+};
+</script>
