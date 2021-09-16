@@ -14,15 +14,38 @@
       </tr>
     </thead>
     <tbody>
+      <!-- La key es el id. Id salió de la informacion que nos devuelve la API de coins
+            https://docs.coincap.io/?version=latest#ee0c0be6-513f-4466-bbb0-2016add462e9 -->
+      <!-- v-bind:key="a.id"   puede ir sin v-bind 
+                        :key="a.id" -->
       <tr
+        v-for="a in assets"
+        v-bind:key="a.id"
         class="border-b border-gray-200 hover:bg-gray-100 hover:bg-orange-100"
       >
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>
+          <!-- a.symbol salio del API. symbol es una propiedad que devuelve en el obj
+          y .toLowerCase() para que el nombre quede en minuscula -->
+          <img
+            v-bind:src="`https://static.coincap.io/assets/icons/${a.symbol.toLowerCase()}@2x.png`"
+            :alt="a.name"
+          />
+        </td>
+        <td>
+          <b># {{ a.rank }}</b>
+        </td>
+        <td>
+          {{ a.name }}
+        </td>
+        <td>
+          {{ a.priceUsd }}
+        </td>
+        <td>
+          {{ a.marketCapUsd }}
+        </td>
+        <td>
+          {{ a.changePercent24Hr }}
+        </td>
         <td class="hidden sm:block"></td>
       </tr>
     </tbody>
