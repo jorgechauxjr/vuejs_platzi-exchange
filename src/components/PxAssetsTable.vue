@@ -38,10 +38,10 @@
           {{ a.name }}
         </td>
         <td>
-          {{ a.priceUsd }}
+          {{ a.priceUsd | dollar }}
         </td>
         <td>
-          {{ a.marketCapUsd }}
+          {{ a.marketCapUsd | dollar }}
         </td>
         <td>
           {{ a.changePercent24Hr }}
