@@ -24,5 +24,5 @@ export default new Router({
       name: "error",
       component: Error,
     },
-  ]
+  ],
 });
