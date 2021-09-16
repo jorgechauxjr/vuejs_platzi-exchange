@@ -17,10 +17,9 @@ const percentFilter = function (value) {
   // Number es para hacer Parse en caso que venga en formato string
   // toFixed para que sean solo 2 decimales
   return `${Number(value).toFixed(2)}%`;
-}
+};
 
 export { dollarFilter, percentFilter };
 // no se exporta default porque la idea de los filtros es que despues se
 // puedan importar de manera atomica, es decir solo dolar filter sin importar
 // otro filtro que tenga en el archivo
-

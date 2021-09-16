@@ -27,6 +27,7 @@
           <!-- a.symbol salio del API. symbol es una propiedad que devuelve en el obj
           y .toLowerCase() para que el nombre quede en minuscula -->
           <img
+            class="w-6 h-6"
             v-bind:src="`https://static.coincap.io/assets/icons/${a.symbol.toLowerCase()}@2x.png`"
             :alt="a.name"
           />
@@ -43,7 +44,9 @@
         <td>
           {{ a.marketCapUsd | dollar }}
         </td>
-        <td>
+        <td
+          v-bind:class="a.changePercent24Hr.includes('-') ? 'text-red-600' : 'text-green-600'"
+        >
           {{ a.changePercent24Hr | percent }}
         </td>
         <td class="hidden sm:block"></td>
