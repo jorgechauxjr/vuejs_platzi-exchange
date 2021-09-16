@@ -44,7 +44,7 @@
           {{ a.marketCapUsd | dollar }}
         </td>
         <td>
-          {{ a.changePercent24Hr }}
+          {{ a.changePercent24Hr | percent }}
         </td>
         <td class="hidden sm:block"></td>
       </tr>
