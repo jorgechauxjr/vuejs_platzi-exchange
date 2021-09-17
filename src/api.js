@@ -15,6 +15,15 @@ function getAssets() {
     .then((res) => res.data);
 }
 
+// Vamos a acceder al valor de la variable coin `${url}/assets/${coin}`
+
+function getAsset(coin) {
+  return fetch(`${url}/assets/${coin}`)
+    .then((resp) => resp.json())
+    .then((res) => res.data);
+}
+
 export default {
   getAssets,
+  getAsset,
 };
