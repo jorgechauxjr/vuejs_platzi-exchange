@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Aqui le paso los datos a el componente PxAssetsTable por medio de props -->
     <px-assets-table v-bind:assets="assets" />
   </div>
 </template>

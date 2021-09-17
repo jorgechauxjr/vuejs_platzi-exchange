@@ -58,7 +58,7 @@
 <script>
 export default {
   name: "PxAssetsTable",
-
+  // Aqui se recibe los assets por medio de properties que envia Home
   props: {
     assets: {
       type: Array,
