@@ -61,3 +61,28 @@
     </template>
   </div>
 </template>
+
+<script>
+import api from "@/api";
+export default {
+  name: "coinDetail",
+  // En asset va a ir la informacion que viene de la API rest
+  data() {
+    return {
+      asset: {},
+    }
+  },
+  // cada vez que el componente se cree va a llamar a la funcion getCoin()
+  created() {
+    this.getCoin()
+  },
+  // getCoins() se encarga de obtener la info de la API rest y es ejecutada dentro de created()
+  // el nombre del parametro this.$route.params.id es id porque debe ser el mismo definido en router con dos puntos. L29
+  methods: {
+    getCoin() {
+      const id = this.$route.params.id;
+      api.getAsset(id).then((asset) => (this.asset= asset));
+    }
+  }
+}
+</script>

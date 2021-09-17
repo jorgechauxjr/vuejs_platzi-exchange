@@ -23,6 +23,8 @@ export default new Router({
     // crear ruta dinamica
     // :id significa un parametro dinamico. Ej puede ser bicoin, etherium, etc.
     //depende valor
+    // === dospuntos indica que es un parametro, id es el nombre
+    //Es el mismo que hay en CoinDetail.vue en el metodo getCoin()
     {
       path: "/coin/:id",
       name: "coin-detail",
