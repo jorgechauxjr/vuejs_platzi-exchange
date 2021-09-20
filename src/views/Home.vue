@@ -1,5 +1,9 @@
 <template>
   <div>
+    <!-- bounce-loader es un componente de vue-spinner y salio de la documentacion
+         https://github.com/Saeris/vue-spinners
+         Para que aparezca "efect" de bolita cuando se está cargando una pagina -->
+    <bounce-loader :loading="isLoading" :color="'#68d391'" :size="100" />
     <!-- Aqui le paso los datos a el componente PxAssetsTable por medio de props -->
     <px-assets-table v-bind:assets="assets" />
   </div>
@@ -20,7 +24,12 @@ export default {
   },
 
   created() {
-    api.getAssets().then((assetsReceived) => (this.assets = assetsReceived));
+    this.isLoading = true
+
+    api
+      .getAssets()
+      .then(assets => (this.assets = assets))
+      .finally(() => (this.isLoading = false))
   },
 };
 </script>
