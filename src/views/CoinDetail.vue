@@ -24,7 +24,7 @@
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio actual</b>
-              <span> {{ asset.priceUsd }} </span>
+              <span> {{ asset.priceUsd | dollar }} </span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio más bajo</b>
@@ -40,7 +40,7 @@
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Variación 24hs</b>
-              <span>{{ asset.changePercent24Hr }}</span>
+              <span>{{ asset.changePercent24Hr | percent }}</span>
             </li>
           </ul>
         </div>
