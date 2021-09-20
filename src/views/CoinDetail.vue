@@ -1,11 +1,18 @@
 <template>
   <div class="flex-col">
-    <template>
+    <template v-if="asset.id">
       <div class="flex flex-col sm:flex-row justify-around items-center">
         <div class="flex flex-col items-center">
-          <img class="w-20 h-20 mr-5" />
+          <img
+            :src="
+              `https://static.coincap.io/assets/icons/${asset.symbol.toLowerCase()}@2x.png`
+            "
+            :alt="asset.name"
+            class="w-20 h-20 mr-5"
+          />
           <h1 class="text-5xl">
-            <small class="sm:mr-2 text-gray-500"></small>
+            {{ asset.name }}
+            <small class="sm:mr-2 text-gray-500">{{ asset.symbol }}</small>
           </h1>
         </div>
 
@@ -13,11 +20,11 @@
           <ul>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Ranking</b>
-              <span></span>
+              <span> #{{ asset.rank }}  </span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio actual</b>
-              <span></span>
+              <span> {{ asset.priceUsd }} </span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio más bajo</b>
@@ -33,7 +40,7 @@
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Variación 24hs</b>
-              <span></span>
+              <span>{{ asset.changePercent24Hr }}</span>
             </li>
           </ul>
         </div>
@@ -77,7 +84,7 @@ export default {
     this.getCoin()
   },
   // getCoins() se encarga de obtener la info de la API rest y es ejecutada dentro de created()
-  // el nombre del parametro this.$route.params.id es id porque debe ser el mismo definido en router con dos puntos. L29
+  // el nombre del parametro this.$route.params.id es id porque debe ser el mismo definido en router.js con dos puntos. L29
   methods: {
     getCoin() {
       const id = this.$route.params.id;
