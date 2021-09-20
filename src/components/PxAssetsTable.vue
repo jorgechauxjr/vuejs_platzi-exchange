@@ -54,15 +54,23 @@
         >
           {{ a.changePercent24Hr | percent }}
         </td>
-        <td class="hidden sm:block"></td>
+        <td class="hidden sm:block">
+          <px-button @custom-click="goToCoin(a.id)">
+            <span>Detalle</span>
+          </px-button>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
+import PxButton from "@/components/PxButton"
 export default {
   name: "PxAssetsTable",
+
+  components: { PxButton },
+
   // Aqui se recibe los assets por medio de properties que envia Home
   props: {
     assets: {
@@ -71,6 +79,18 @@ export default {
       default: () => [],
     },
   },
+
+  /* Para ir a una ruta de manera programatica uso $router que es diferente de $route
+   this.$router me permite acceder a la instancia del router para navegar a traves de codigo
+   la manera de navegar es pusheando una nueva ruta al stack de rutas */
+
+   // coin-detail es el nombre de la ruta dinamica que esta en router.js
+
+  methods: {
+    goToCoin (id) {
+      this.$router.push({ name: 'coin-detail', params: { id } })
+    }
+  }
 };
 </script>
 
