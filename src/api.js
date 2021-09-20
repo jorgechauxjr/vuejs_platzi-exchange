@@ -23,7 +23,23 @@ function getAsset(coin) {
     .then((res) => res.data);
 }
 
+// parametro "interval" para obtener valor por horas, es decir 24 resultados porque es 1 dia
+// now.getdate() - 1 asigna fecha de un dia anterios
+// end: valor de ahora
+// start: valor de ahora menos un dia
+function getAssetHistory(coin) {
+  const now = new Date()
+  const end = now.getTime()
+  now.setDate(now.getDate() - 1)
+  const start = now.getTime()
+
+  return fetch(`${url}/assets/${coin}/history?interval=h1&start=${start}&end=${end}`)
+    .then((resp) => resp.json())
+    .then((res) => res.data);
+}
+
 export default {
   getAssets,
   getAsset,
+  getAssetHistory,
 };
