@@ -28,15 +28,15 @@
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio más bajo</b>
-              <span></span>
+              <span>{{ min | dollar }}</span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio más alto</b>
-              <span></span>
+              <span>{{ max | dollar }}</span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio Promedio</b>
-              <span></span>
+              <span>{{ avg | dollar }}</span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Variación 24hs</b>
@@ -80,6 +80,27 @@ export default {
       history: []
     }
   },
+
+  computed: {
+    min() {
+      return Math.min(
+        ...this.history.map(h => parseFloat(h.priceUsd).toFixed(2))
+      )
+    },
+
+    max() {
+      return Math.max(
+        ...this.history.map(h => parseFloat(h.priceUsd).toFixed(2))
+      )
+    },
+
+    avg() {
+      return Math.abs(
+        ...this.history.map(h => parseFloat(h.priceUsd).toFixed(2))
+      )
+    }
+  },
+
   // cada vez que el componente se cree va a llamar a la funcion getCoin()
   created() {
     this.getCoin()
