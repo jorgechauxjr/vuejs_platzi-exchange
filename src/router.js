@@ -7,6 +7,8 @@ import CoinDetail from "@/views/CoinDetail";
 
 Vue.use(Router);
 
+// el name de cada ruta se invoca en PxAssetsTable.vue
+
 export default new Router({
   mode: "history",
   routes: [

@@ -35,8 +35,13 @@
         <td>
           <b># {{ a.rank }}</b>
         </td>
+        <!-- Creamos router-link para que el usuario no tenga que escribir url sino que vaya directo a la info de la moneda especifica por medio de un enlace
+        En este caso usamos router-link que funciona como una etiqueta a y redirecciona de manera dinamica -->
         <td>
-          {{ a.name }}
+          <router-link class="hover:underline text-green-600" :to="{ name: 'coin-detail', params: { id: a.id}}">
+            {{ a.name }}
+          </router-link>
+          <small class="ml-1 text-gray-500">{{ a.symbol }}</small>
         </td>
         <td>
           {{ a.priceUsd | dollar }}
