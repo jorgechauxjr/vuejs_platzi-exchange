@@ -5,8 +5,10 @@
         <div class="flex items-center flex-shrink-0 text-white mr-6">
           <!-- componente PxIcon -->
           <px-icon class="mr-2" />
-          <span class="font-semibold text-xl tracking-tight"
-            >PlatziExchange</span
+          <!-- De manera dinamica con directiva v-bind :to="{ name: 'home'}" el nombre esta definido en router.js
+              o podemos hacerlo normal  to="/" -->
+          <router-link :to="{ name: 'home'}" class="font-semibold text-xl tracking-tight"
+            >PlatziExchange</router-link
           >
         </div>
         <div
