@@ -4,7 +4,8 @@
          https://github.com/Saeris/vue-spinners
          Para que aparezca "efect" de bolita cuando se está cargando una pagina -->
     <bounce-loader :loading="isLoading" :color="'#68d391'" :size="100" />
-    <!-- Aqui le paso los datos a el componente PxAssetsTable por medio de props -->
+    <!-- Deberia ser así para que la bolita cargue pero no funciona
+    <px-assets-table v-if="!isLoading" v-bind:assets="assets" /> -->
     <px-assets-table v-bind:assets="assets" />
   </div>
 </template>
