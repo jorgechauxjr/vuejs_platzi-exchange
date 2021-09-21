@@ -3,8 +3,11 @@
     <thead>
       <tr class="bg-gray-100 border-b-2 border-gray-400">
         <th></th>
-        <th>
-          <span>Ranking</span>
+        <!-- Las clases up y down están definidas en el css -->
+        <th :class="{ up: this.sortOrder === 1, down: this.sortOrder === -1 }">
+          <span
+          class="underline cursor-pointer"
+          @click="changeSortOrder">Ranking</span>
         </th>
         <th>Nombre</th>
         <th>Precio</th>
@@ -104,9 +107,7 @@ devolvemos esos elementos
 - podemos buscafr por symbol o name*/
   computed: {
     filteredAssets() {
-      if (!this.filter) {
-        return this.assets
-      }
+
 
       const altOrder = this.sortOrder === 1 ? -1 : 1
 
@@ -136,6 +137,10 @@ devolvemos esos elementos
   methods: {
     goToCoin (id) {
       this.$router.push({ name: 'coin-detail', params: { id } })
+    },
+
+    changeSortOrder () {
+      this.sortOrder = this.sortOrder === 1 ? -1 : 1
     }
   }
 };
