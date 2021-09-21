@@ -79,6 +79,7 @@
           <td>
             <!-- @custom-clickc es igual a v-on:custom-click -->
             <px-button
+            :is-loading="m.isLoading || false"
               v-if="!m.url"
               @custom-click="getWebSite(m)">
             <slot>Obtener Link</slot>
@@ -136,10 +137,16 @@ export default {
   methods: {
     // Una vez se resuelva le pasamos el vaor del a url al exchange
     getWebSite (exchange) {
+
+      this.$set(exchange, "isLoading", true)
+
       // console.log("===== ", exchange)
       return api.getExchange(exchange.exchangeId)
       .then(res => {
         this.$set(exchange, "url", res.exchangeUrl)
+      })
+      .finally(() => {
+        this.$set(exchange, "isLoading", false)
       })
     },
 
