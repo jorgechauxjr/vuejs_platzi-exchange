@@ -10,7 +10,16 @@
         <th>Precio</th>
         <th>Cap. de Mercado</th>
         <th>Variación 24hs</th>
-        <td class="hidden sm:block"></td>
+        <td class="hidden sm:block">
+          <!-- Input para filtar informacion -->
+          <input
+            class="bg-gray-100 focus:outline-none border-b border-gray-400 py-2 px-4 block w-full appearance-none leading-normal"
+            id="filter"
+            placeholder="Buscar..."
+            type="text"
+            v-model="filter"
+          />
+        </td>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +28,7 @@
       <!-- v-bind:key="a.id"   puede ir sin v-bind 
                         :key="a.id" -->
       <tr
-        v-for="a in assets"
+        v-for="a in filteredAssets"
         v-bind:key="a.id"
         class="border-b border-gray-200 hover:bg-gray-100 hover:bg-orange-100"
       >
@@ -71,6 +80,12 @@ export default {
 
   components: { PxButton },
 
+  data () {
+    return {
+      filter: "",
+    };
+  },
+
   // Aqui se recibe los assets por medio de properties que envia Home
   props: {
     assets: {
@@ -78,6 +93,24 @@ export default {
       // funcion que devuelve un array
       default: () => [],
     },
+  },
+
+// Vamos a filtarar la lista de assets siempre que filter tenga un valor
+
+/*Resumen: si nuestro elemento dentro de la lista assets coincide en propiedad symbol con propiedad filter
+devolvemos esos elementos 
+- Lo mismo con la propiedad name
+- podemos buscafr por symbol o name*/
+  computed: {
+    filteredAssets() {
+      if (!this.filter) { return this.assets }
+      // este filter es nativo de js para filtrar arrays
+      return this.assets.filter(
+        a => 
+          a.symbol.toLowerCase().includes(this.filter.toLowerCase()) ||
+          a.name.toLowerCase().includes(this.filter.toLowerCase())
+      )
+    }
   },
 
   /* Para ir a una ruta de manera programatica uso $router que es diferente de $route
