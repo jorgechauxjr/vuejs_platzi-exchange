@@ -83,6 +83,7 @@ export default {
   data () {
     return {
       filter: "",
+      sortOrder: 1
     };
   },
 
@@ -103,13 +104,26 @@ devolvemos esos elementos
 - podemos buscafr por symbol o name*/
   computed: {
     filteredAssets() {
-      if (!this.filter) { return this.assets }
+      if (!this.filter) {
+        return this.assets
+      }
+
+      const altOrder = this.sortOrder === 1 ? -1 : 1
+
       // este filter es nativo de js para filtrar arrays
       return this.assets.filter(
         a => 
           a.symbol.toLowerCase().includes(this.filter.toLowerCase()) ||
           a.name.toLowerCase().includes(this.filter.toLowerCase())
       )
+      .sort((actualElement, elementToCompare) => {
+        if (parseInt(actualElement.rank) > parseInt(elementToCompare)){
+          // devuelve 1 porque sortOrder es 1
+          return this.sortOrder
+        }
+
+        return altOrder
+      })
     }
   },
 
