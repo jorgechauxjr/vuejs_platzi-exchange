@@ -77,7 +77,10 @@
           <td>{{ m.priceUsd | dollar }}</td>
           <td>{{ m.baseSymbol }} / {{ m.quoteSymbol }} </td>
           <td>
-            <px-button />
+            <!-- @custom-clickc es igual a v-on:custom-click -->
+            <px-button @custom-click="getWebSite(m)">
+            <slot>Obtener Link</slot>
+            </px-button>
             <a class="hover:underline text-green-600" target="_blanck"></a>
           </td>
         </tr>
@@ -87,9 +90,12 @@
 </template>
 
 <script>
+import PxButton from "@/components/PxButton";
 import api from "@/api";
 export default {
   name: "coinDetail",
+
+  components: { PxButton },
   // En asset va a ir la informacion que viene de la API rest
   data() {
     return {
@@ -126,6 +132,15 @@ export default {
   // getCoins() se encarga de obtener la info de la API rest y es ejecutada dentro de created()
   // el nombre del parametro this.$route.params.id es id porque debe ser el mismo definido en router.js con dos puntos. L29
   methods: {
+    // Una vez se resuelva le pasamos el vaor del a url al exchange
+    getWebSite (exchange) {
+      // console.log("===== ", exchange)
+      return api.getExchange(exchange.exchangeId)
+      .then(res => {
+        exchange.url = res.exchangeUrl;
+      })
+    },
+
     getCoin() {
       const id = this.$route.params.id
       this.isLoading = true
