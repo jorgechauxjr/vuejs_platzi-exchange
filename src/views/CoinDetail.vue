@@ -65,6 +65,20 @@
           <span class="text-xl"></span>
         </div>
       </div>
+      <h3 class="text-xl my-10">Mejores Ofertas de Cambio</h3>
+      <table>
+        <tr class="border-b">
+          <td>
+            <b></b>
+          </td>
+          <td></td>
+          <td></td>
+          <td>
+            <px-button />
+            <a class="hover:underline text-green-600" target="_blanck"></a>
+          </td>
+        </tr>
+      </table>
     </template>
   </div>
 </template>
@@ -77,8 +91,9 @@ export default {
   data() {
     return {
       asset: {},
-      history: []
-    }
+      history: [],
+      markets: []
+    };
   },
 
   computed: {
@@ -109,14 +124,20 @@ export default {
   // el nombre del parametro this.$route.params.id es id porque debe ser el mismo definido en router.js con dos puntos. L29
   methods: {
     getCoin() {
-      const id = this.$route.params.id;
-      
-      Promise.all([api.getAsset(id), api.getAssetHistory(id)]).then(
-        ([asset, history]) => {
+      const id = this.$route.params.id
+      this.isLoading = true
+
+      Promise.all([
+        api.getAsset(id),
+        api.getAssetHistory(id),
+        api.getMarkets(id)
+      ])
+        .then(([asset, history, markets]) => {
           this.asset = asset
           this.history = history
-        }
-      )
+          this.markets = markets
+        })
+        .finally(() => (this.isLoading = false))
     }
   }
 }
