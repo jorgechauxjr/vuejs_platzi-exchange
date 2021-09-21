@@ -65,14 +65,17 @@
           <span class="text-xl"></span>
         </div>
       </div>
+
       <h3 class="text-xl my-10">Mejores Ofertas de Cambio</h3>
       <table>
-        <tr class="border-b">
+        <tr v-for="m in markets" :key="`${m.exchangeId}-${m.priceUsd}`" class="border-b">
           <td>
-            <b></b>
+            <b>{{ m.exchangeId }}</b>
           </td>
-          <td></td>
-          <td></td>
+          <!-- baseSymbol y quoteSymbol vienen de la api de coin cap o se puede ver en las herramientas del desarrollador en el arreglo de markets
+          dentro del componente CoinDetail Value -->
+          <td>{{ m.priceUsd | dollar }}</td>
+          <td>{{ m.baseSymbol }} / {{ m.quoteSymbol }} </td>
           <td>
             <px-button />
             <a class="hover:underline text-green-600" target="_blanck"></a>
