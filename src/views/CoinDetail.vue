@@ -139,7 +139,7 @@ export default {
       // console.log("===== ", exchange)
       return api.getExchange(exchange.exchangeId)
       .then(res => {
-        exchange.url = res.exchangeUrl;
+        this.$set(exchange, "url", res.exchangeUrl)
       })
     },
 
