@@ -78,10 +78,12 @@
           <td>{{ m.baseSymbol }} / {{ m.quoteSymbol }} </td>
           <td>
             <!-- @custom-clickc es igual a v-on:custom-click -->
-            <px-button @custom-click="getWebSite(m)">
+            <px-button
+              v-if="!m.url"
+              @custom-click="getWebSite(m)">
             <slot>Obtener Link</slot>
             </px-button>
-            <a class="hover:underline text-green-600" target="_blanck"></a>
+            <a v-else class="hover:underline text-green-600" target="_blanck">{{ m.url }}</a>
           </td>
         </tr>
       </table>
