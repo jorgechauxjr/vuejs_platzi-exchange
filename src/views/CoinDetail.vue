@@ -128,6 +128,12 @@ export default {
     }
   },
 
+  watch: {
+    $route () {
+      this.getCoin()
+    }
+  },
+
   // cada vez que el componente se cree va a llamar a la funcion getCoin()
   created() {
     this.getCoin()
